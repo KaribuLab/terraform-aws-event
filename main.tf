@@ -18,6 +18,7 @@ resource "aws_sqs_queue" "event_dlq" {
 resource "aws_sqs_queue" "event" {
   count = length(var.topics)
   name = "${var.topics[count.index]}"
+  fifo_queue = var.fifo_queue
   redrive_policy = jsonencode(
     merge({
         deadLetterTargetArn = aws_sqs_queue.event_dlq[count.index].arn

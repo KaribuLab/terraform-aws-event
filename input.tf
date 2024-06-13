@@ -3,6 +3,11 @@ variable topics {
   description = "The name of the SNS topics"
 }
 
+variable fifo_queue {
+  type        = bool
+  description = "FIFO queue"
+}
+
 variable delivery_policy {
   type        = string
   description = "The delivery policy for the SNS topic"
