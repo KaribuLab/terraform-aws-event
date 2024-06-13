@@ -8,10 +8,9 @@ variable fifo_queue {
   description = "FIFO queue"
 }
 
-variable max_receive_count {
-  type        = number
-  default = 3
-  description = "The maximum number of times a message can be received"
+variable delivery_policy {
+  type        = string
+  description = "The delivery policy for the SNS topic"
 }
 
 variable common_tags {
@@ -19,7 +18,8 @@ variable common_tags {
   description = "The common tags for the SNS topic"
 }
 
-variable redrive_policy {
-    type = map(string)
-    description = "The redrive policy for the SNS topic"
+variable max_receive_count {
+  type        = number
+  default = 3
+  description = "The maximum number of times a message can be received"
 }
