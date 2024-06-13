@@ -4,7 +4,7 @@ terraform {
 
 resource "aws_sns_topic" "event" {
   count = length(var.topics)
-  name = var.topics[count.index]
+  name = "${var.topics[count.index]}${var.fifo_queue ? ".fifo" : ""}"
   delivery_policy = var.delivery_policy
   fifo_topic = var.fifo_queue
   tags = var.common_tags
