@@ -20,13 +20,10 @@ resource "aws_sqs_queue" "event" {
   count = length(var.topics)
   name = "${var.topics[count.index]}${var.fifo_queue ? ".fifo" : ""}"
   fifo_queue = var.fifo_queue
-  redrive_policy = jsonencode(
-    merge({
-        deadLetterTargetArn = aws_sqs_queue.event_dlq[count.index].arn
-    },
-    var.redrive_policy
-    )
-  )
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.event_dlq[count.index].arn
+    maxReceiveCount = var.max_receive_count
+  })
   tags = var.common_tags
 }
 

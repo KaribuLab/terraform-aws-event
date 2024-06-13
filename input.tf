@@ -8,9 +8,10 @@ variable fifo_queue {
   description = "FIFO queue"
 }
 
-variable delivery_policy {
-  type        = string
-  description = "The delivery policy for the SNS topic"
+variable max_receive_count {
+  type        = number
+  default = 3
+  description = "The maximum number of times a message can be received"
 }
 
 variable common_tags {
